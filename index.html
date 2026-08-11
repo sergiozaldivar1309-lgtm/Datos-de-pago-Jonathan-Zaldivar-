@@ -3,663 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sinclair Boutique - Detalles de Pago</title>
+    <title>Sinclair Boutique - Datos de Pago</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        cinzel: ['Cinzel', 'serif'],
-                        montserrat: ['Montserrat', 'sans-serif'],
-                        playfair: ['Playfair Display', 'serif'],
-                    },
                     colors: {
                         gold: {
-                            100: '#FFF7D6',
-                            300: '#FCE081',
-                            400: '#E6C35C',
-                            500: '#D4AF37',
-                            600: '#AA820A',
-                            700: '#836300',
-                        }
+                            100: '#FFF8E1',
+                            300: '#FDE047',
+                            400: '#F59E0B',
+                            500: '#D97706',
+                            600: '#B45309',
+                        },
+                        darkbg: '#0A0A0C',
+                        cardbg: '#141418',
+                    },
+                    fontFamily: {
+                        brand: ['Montserrat', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-gold': '0 0 35px rgba(245, 158, 11, 0.45)',
+                        'neon-card': '0 20px 40px -15px rgba(0, 0, 0, 0.9), 0 0 20px rgba(245, 158, 11, 0.25)'
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Metallic & Texture Backgrounds */
-        .bg-leather {
-            background-color: #121212;
-            background-image: radial-gradient(#262626 1px, transparent 1px), radial-gradient(#1f1f1f 1px, #121212 1px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+        body {
+            background-color: #08080A;
+            background-image: radial-gradient(circle at 50% 15%, #1f1a10 0%, #08080a 75%);
+        }
+        .gold-border-glow {
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            box-shadow: inset 0 0 15px rgba(245, 158, 11, 0.15), 0 0 25px rgba(245, 158, 11, 0.25);
+        }
+        .chip-metallic {
+            background: linear-gradient(135deg, #fef08a 0%, #b45309 50%, #f59e0b 100%);
+        }
+        
+        /* Efecto Neón para el Logo */
+        .neon-text-white {
+            color: #FFFFFF;
+            text-shadow: 
+                0 0 5px rgba(255, 255, 255, 0.8),
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 4px 10px rgba(0, 0, 0, 0.9);
         }
 
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #FFF1B0 0%, #E2B755 35%, #B8860B 70%, #FDF0A6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .gold-gradient-border {
-            border-image: linear-gradient(135deg, #FFE896 0%, #D4AF37 50%, #8A6818 100%) 1;
-        }
-
-        .card-gold-frame {
-            border: 2px solid transparent;
-            background: linear-gradient(#18181c, #18181c) padding-box,
-                        linear-gradient(135deg, #FFE58F 0%, #C59B27 50%, #7A5B0B 100%) border-box;
-        }
-
-        .card-rosegold-frame {
-            border: 2px solid transparent;
-            background: linear-gradient(#1a1618, #1a1618) padding-box,
-                        linear-gradient(135deg, #FAD0C4 0%, #E1A2B8 50%, #9E5B72 100%) border-box;
-        }
-
-        .card-marble-frame {
-            border: 2px solid transparent;
-            background: linear-gradient(#fcfbf9, #fcfbf9) padding-box,
-                        linear-gradient(135deg, #D4AF37 0%, #AA820A 100%) border-box;
-        }
-
-        .gold-btn {
-            background: linear-gradient(135deg, #E6C35C 0%, #C59B27 50%, #997413 100%);
-            transition: all 0.25s ease;
-        }
-        .gold-btn:hover {
-            background: linear-gradient(135deg, #F5D77F 0%, #D4AF37 50%, #B3891B 100%);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
-        }
-
-        /* Shimmer effect */
-        .shimmer {
-            position: relative;
-            overflow: hidden;
-        }
-        .shimmer::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                60deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.12) 50%,
-                transparent 70%
-            );
-            transform: rotate(30deg);
-            animation: shimmerMove 6s infinite;
-        }
-        @keyframes shimmerMove {
-            0% { transform: translate(-100%, -100%) rotate(30deg); }
-            20% { transform: translate(100%, 100%) rotate(30deg); }
-            100% { transform: translate(100%, 100%) rotate(30deg); }
-        }
-
-        /* Toast message animation */
-        #toast {
-            transition: opacity 0.3s ease, transform 0.3s ease;
+        .neon-text-gold {
+            color: #FBBF24;
+            text-shadow: 
+                0 0 4px #F59E0B,
+                0 0 12px rgba(245, 158, 11, 0.8),
+                0 0 20px rgba(245, 158, 11, 0.5);
         }
     </style>
 </head>
-<body class="bg-stone-950 text-stone-100 min-h-screen font-montserrat flex flex-col justify-between selection:bg-gold-500 selection:text-black">
+<body class="font-sans text-gray-200 min-h-screen flex flex-col justify-between items-center p-4 sm:p-6">
 
-    <!-- Header Navigation -->
-    <header class="border-b border-stone-800 bg-stone-900/80 backdrop-blur sticky top-0 z-40 px-4 py-3">
-        <div class="max-w-5xl mx-auto flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-gold-600 to-gold-300 flex items-center justify-center text-black font-bold text-lg shadow-md">
-                    <i class="fa-solid me-0 fa-bag-shopping"></i>
+    <!-- Mensaje Flotante de Confirmación (Toast) -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 ease-out flex items-center space-x-3 bg-neutral-900 border border-gold-400/60 text-gold-300 px-5 py-3 rounded-2xl shadow-2xl backdrop-blur-md">
+        <div class="w-7 h-7 rounded-full bg-gold-400/20 flex items-center justify-center text-gold-400">
+            <i class="fa-solid fa-check text-sm"></i>
+        </div>
+        <span id="toast-message" class="text-sm font-medium">¡Copiado al portapapeles!</span>
+    </div>
+
+    <!-- Contenedor Principal -->
+    <main class="w-full max-w-md mx-auto my-auto space-y-6">
+
+        <!-- LOGO IDÉNTICO A LA IMAGEN (Recreación en Vector + Fallback a Imagen) -->
+        <header class="text-center pt-2">
+            <div class="relative w-64 h-64 sm:w-72 sm:h-72 mx-auto transition-transform hover:scale-105 duration-300">
+                
+                <!-- Intentar cargar la imagen original cargada o renderizar la recreación exacta en SVG -->
+                <img id="logo-img" src="image.png" alt="Sinclair Boutique Logo" class="w-full h-full object-contain filter drop-shadow-[0_0_20px_rgba(245,158,11,0.5)] hidden" onload="this.classList.remove('hidden'); document.getElementById('svg-logo').classList.add('hidden');">
+
+                <!-- SVG hiperrealista con el diseño idéntico del logo neón -->
+                <svg id="svg-logo" viewBox="0 0 400 400" class="w-full h-full drop-shadow-[0_0_25px_rgba(245,158,11,0.55)]">
+                    <defs>
+                        <!-- Patrón de Azulejos del Fondo -->
+                        <pattern id="tileGrid" width="16" height="16" patternUnits="userSpaceOnUse">
+                            <rect width="16" height="16" fill="#121215"/>
+                            <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#1c1c22" stroke-width="1.2"/>
+                        </pattern>
+
+                        <!-- Filtro Neón Dorado -->
+                        <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+                            <feGaussianBlur stdDeviation="5" result="blur1"/>
+                            <feGaussianBlur stdDeviation="12" result="blur2"/>
+                            <feMerge>
+                                <feMergeNode in="blur2"/>
+                                <feMergeNode in="blur1"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+
+                        <!-- Sombra 3D para el Texto SINCLAIR -->
+                        <filter id="textShadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.95"/>
+                        </filter>
+
+                        <!-- Degradado Dorado para las Líneas -->
+                        <linearGradient id="goldLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#121215" stop-opacity="0" />
+                            <stop offset="30%" stop-color="#F59E0B" />
+                            <stop offset="50%" stop-color="#FFF8E1" />
+                            <stop offset="70%" stop-color="#F59E0B" />
+                            <stop offset="100%" stop-color="#121215" stop-opacity="0" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Fondo Circular de Azulejo -->
+                    <circle cx="200" cy="200" r="160" fill="url(#tileGrid)" stroke="#000000" stroke-width="6"/>
+
+                    <!-- Anillo Neón Exterior (Grosor Dorado) -->
+                    <circle cx="200" cy="200" r="154" fill="none" stroke="#D97706" stroke-width="8" filter="url(#goldGlow)"/>
+                    <circle cx="200" cy="200" r="154" fill="none" stroke="#FBBF24" stroke-width="4"/>
+
+                    <!-- Anillo Neón Interior (Fino Brilante) -->
+                    <circle cx="200" cy="200" r="142" fill="none" stroke="#F59E0B" stroke-width="5" filter="url(#goldGlow)"/>
+                    <circle cx="200" cy="200" r="142" fill="none" stroke="#FEF08A" stroke-width="2.5"/>
+
+                    <!-- Sostén/Soporte metálico superior de la luz neón -->
+                    <g transform="translate(186, 32)">
+                        <rect x="0" y="4" width="28" height="14" rx="3" fill="#18181b" stroke="#f59e0b" stroke-width="1.5"/>
+                        <path d="M 6 4 C 6 -8, 22 -8, 22 4" fill="none" stroke="#09090b" stroke-width="5"/>
+                        <path d="M 6 4 C 6 -8, 22 -8, 22 4" fill="none" stroke="#3f3f46" stroke-width="2"/>
+                    </g>
+
+                    <!-- TEXTO PRINCIPAL "SINCLAIR" (3D Blanco Biselado) -->
+                    <text x="200" y="192" text-anchor="middle" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="900" font-size="47" fill="#FFFFFF" letter-spacing="1.5" filter="url(#textShadow)">SINCLAIR</text>
+
+                    <!-- ÍCONO DE BOLSO DE MANO -->
+                    <g transform="translate(173, 197)" filter="url(#textShadow)">
+                        <!-- Asa del bolso -->
+                        <path d="M 17 18 C 17 3, 37 3, 37 18" fill="none" stroke="#E5E7EB" stroke-width="4.5" stroke-linecap="round"/>
+                        <!-- Cuerpo del bolso -->
+                        <path d="M 6 18 L 48 18 L 44 42 C 43 45, 40 47, 36 47 L 18 47 C 14 47, 11 45, 10 42 Z" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1.5"/>
+                        <!-- Solapa -->
+                        <path d="M 6 18 L 48 18 L 40 31 C 39 33, 37 34, 34 34 L 20 34 C 17 34, 15 33, 14 31 Z" fill="#E5E7EB"/>
+                        <!-- Broche Dorado -->
+                        <rect x="23" y="30" width="8" height="7" rx="1.5" fill="#D97706" stroke="#FEF08A" stroke-width="1"/>
+                    </g>
+
+                    <!-- Líneas Divisoras Doradas a los Lados del Bolso -->
+                    <line x1="85" y1="226" x2="165" y2="226" stroke="url(#goldLineGrad)" stroke-width="2.5" filter="url(#goldGlow)"/>
+                    <line x1="235" y1="226" x2="315" y2="226" stroke="url(#goldLineGrad)" stroke-width="2.5" filter="url(#goldGlow)"/>
+
+                    <!-- TEXTO SECUNDARIO "BOUTIQUE" (Dorado Neón) -->
+                    <text x="200" y="272" text-anchor="middle" font-family="'Cinzel', serif" font-weight="800" font-size="22" fill="#FBBF24" letter-spacing="7" filter="url(#goldGlow)">BOUTIQUE</text>
+                </svg>
+            </div>
+            <p class="text-xs font-serif tracking-[0.35em] text-gold-400 uppercase mt-1">Tarjeta Digital de Pago</p>
+        </header>
+
+        <!-- TARJETA BANCARIA ESTILIZADA (BBVA + Sinclair) -->
+        <div class="relative w-full aspect-[1.58/1] rounded-2xl p-5 sm:p-6 bg-gradient-to-br from-neutral-900 via-stone-900 to-black gold-border-glow shadow-neon-card flex flex-col justify-between overflow-hidden group">
+            
+            <!-- Fondo sutil de malla -->
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+            <div class="absolute -right-10 -top-10 w-36 h-36 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Fila Superior: Banco y Marca -->
+            <div class="relative z-10 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xl font-black tracking-wider text-blue-400 font-sans">BBVA</span>
+                    <span class="text-[10px] text-neutral-400 border-l border-neutral-700 pl-2">Depósito / Transferencia</span>
                 </div>
-                <div>
-                    <h1 class="font-cinzel text-lg tracking-wider font-bold gold-gradient-text leading-tight">SINCLAIR</h1>
-                    <p class="text-[10px] tracking-[0.2em] text-stone-400 -mt-1 font-semibold">BOUTIQUE</p>
+                <div class="text-[11px] font-serif tracking-widest text-gold-400 font-bold uppercase">
+                    Sinclair
                 </div>
             </div>
-            <div class="text-xs bg-stone-800 border border-stone-700 px-3 py-1.5 rounded-full text-stone-300 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Tarjeta Digital de Pago</span>
+
+            <!-- Chip y Contactless -->
+            <div class="relative z-10 flex items-center space-x-3 my-1">
+                <div class="w-10 h-7 rounded-md chip-metallic border border-amber-300/50 relative overflow-hidden flex items-center justify-center">
+                    <div class="w-full h-[1px] bg-black/40 my-1"></div>
+                </div>
+                <i class="fa-solid fa-wifi text-neutral-500 text-sm rotate-90"></i>
+            </div>
+
+            <!-- Número de Tarjeta -->
+            <div class="relative z-10">
+                <p class="text-[9px] uppercase tracking-widest text-neutral-400 mb-0.5">Número de Tarjeta</p>
+                <div class="flex items-center justify-between">
+                    <p class="font-mono text-lg sm:text-xl font-bold tracking-wider text-white">
+                        4152 3146 5673 0028
+                    </p>
+                    <button onclick="copyToClipboard('4152314656730028', 'Número de tarjeta')" class="text-gold-400 hover:text-gold-300 p-2 rounded-lg bg-gold-400/10 hover:bg-gold-400/20 active:scale-95 transition-all">
+                        <i class="fa-regular fa-copy text-base"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Titular de la Cuenta -->
+            <div class="relative z-10 flex justify-between items-end pt-2 border-t border-neutral-800/80">
+                <div>
+                    <p class="text-[9px] uppercase tracking-widest text-neutral-400">Titular de la Cuenta</p>
+                    <p class="font-semibold text-xs sm:text-sm text-neutral-100 tracking-wide uppercase">Jonathan Zaldivar</p>
+                </div>
+                <div class="flex space-x-1">
+                    <div class="w-6 h-6 rounded-full bg-red-600/80"></div>
+                    <div class="w-6 h-6 rounded-full bg-amber-500/80 -ml-3"></div>
+                </div>
             </div>
         </div>
-    </header>
 
-    <!-- Main Container -->
-    <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-        <!-- LEFT COLUMN: Live Interactive Card View & Actions -->
-        <section class="lg:col-span-7 flex flex-col items-center w-full space-y-6">
+        <!-- LISTA INTERACTIVA DE DATOS PARA COPIAR -->
+        <div class="bg-cardbg/90 backdrop-blur-md rounded-2xl p-5 border border-neutral-800 space-y-3.5 shadow-xl">
             
-            <div class="w-full flex items-center justify-between text-xs text-stone-400 px-1">
-                <span class="uppercase tracking-widest font-semibold flex items-center gap-1.5">
-                    <i class="fa-solid fa-eye text-gold-400"></i> Vista Previa en Vivo
-                </span>
-                <span id="themeBadge" class="bg-gold-500/10 border border-gold-500/30 text-gold-300 px-2.5 py-0.5 rounded-full font-medium">
-                    Oro Imperial
-                </span>
+            <h2 class="text-xs font-bold text-neutral-300 uppercase tracking-wider flex items-center space-x-2 mb-1">
+                <i class="fa-solid fa-building-columns text-gold-400"></i>
+                <span>Datos Bancarios Completos</span>
+            </h2>
+
+            <!-- Banco -->
+            <div class="flex items-center justify-between p-3 rounded-xl bg-neutral-900/80 border border-neutral-800">
+                <div>
+                    <p class="text-[11px] text-neutral-400">Banco Receptor</p>
+                    <p class="text-sm font-semibold text-white">BBVA México</p>
+                </div>
+                <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">SPEI</span>
             </div>
 
-            <!-- DIGITAL PAYMENT CARD DISPLAY -->
-            <div id="cardPreview" class="w-full max-w-md rounded-2xl card-gold-frame p-6 sm:p-8 shadow-2xl relative shimmer transition-all duration-300">
-                
-                <!-- Background subtle texture -->
-                <div class="absolute inset-0 opacity-15 rounded-2xl pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-
-                <!-- Card Header / Logo -->
-                <div class="relative z-10 flex flex-col items-center justify-center text-center pb-6 border-b border-stone-800/80">
-                    <div class="w-14 h-14 rounded-full border border-gold-400/40 p-1 mb-2 flex items-center justify-center bg-stone-900/60 shadow-inner">
-                        <div class="w-full h-full rounded-full border border-gold-400/80 flex flex-col items-center justify-center text-gold-300">
-                            <i class="fa-solid fa-bag-shopping text-lg"></i>
-                        </div>
-                    </div>
-                    <h2 id="previewBoutique" class="font-cinzel text-2xl font-bold tracking-[0.25em] gold-gradient-text uppercase">
-                        SINCLAIR
-                    </h2>
-                    <p class="font-montserrat text-[10px] tracking-[0.35em] text-stone-400 uppercase font-medium -mt-0.5">
-                        BOUTIQUE
-                    </p>
+            <!-- CLABE Interbancaria -->
+            <div class="flex items-center justify-between p-3 rounded-xl bg-neutral-900/80 border border-neutral-800">
+                <div class="pr-2">
+                    <p class="text-[11px] text-neutral-400">Cuenta / CLABE Interbancaria</p>
+                    <p class="text-sm font-mono font-bold text-gold-300">012180004708651681</p>
                 </div>
-
-                <!-- Title Banner -->
-                <div class="relative z-10 py-4 text-center">
-                    <span class="inline-block px-4 py-1 rounded-full text-xs font-cinzel font-bold tracking-[0.2em] bg-gold-500/10 text-gold-300 border border-gold-500/20 uppercase">
-                        Detalles de Pago
-                    </span>
-                </div>
-
-                <!-- Payment Details List -->
-                <div class="relative z-10 space-y-4 my-2 text-stone-200">
-                    
-                    <!-- Bank Name -->
-                    <div class="bg-stone-900/60 border border-stone-800/80 p-3 rounded-xl flex items-center justify-between group hover:border-gold-500/40 transition">
-                        <div>
-                            <p class="text-[10px] font-semibold tracking-wider uppercase text-stone-400">Banco</p>
-                            <p id="previewBank" class="font-bold text-base text-white tracking-wide">BBVA</p>
-                        </div>
-                        <div class="text-stone-500 text-sm">
-                            <i class="fa-solid fa-building-columns text-gold-400/80"></i>
-                        </div>
-                    </div>
-
-                    <!-- Card Number -->
-                    <div class="bg-stone-900/60 border border-stone-800/80 p-3 rounded-xl flex items-center justify-between group hover:border-gold-500/40 transition">
-                        <div class="min-w-0 flex-1">
-                            <p class="text-[10px] font-semibold tracking-wider uppercase text-stone-400">Número de Tarjeta</p>
-                            <p id="previewCardNum" class="font-mono font-bold text-base sm:text-lg text-gold-200 tracking-wider">
-                                4152 3146 5673 0028
-                            </p>
-                        </div>
-                        <button onclick="copyDetail('previewCardNum', 'Número de Tarjeta')" class="ml-2 bg-stone-800 hover:bg-gold-500 hover:text-black text-stone-300 p-2.5 rounded-lg transition active:scale-95 flex items-center justify-center shrink-0" title="Copiar Tarjeta">
-                            <i class="fa-regular fa-copy text-sm"></i>
-                        </button>
-                    </div>
-
-                    <!-- Account / CLABE Number -->
-                    <div class="bg-stone-900/60 border border-stone-800/80 p-3 rounded-xl flex items-center justify-between group hover:border-gold-500/40 transition">
-                        <div class="min-w-0 flex-1">
-                            <p class="text-[10px] font-semibold tracking-wider uppercase text-stone-400">Cuenta / CLABE</p>
-                            <p id="previewAccountNum" class="font-mono font-bold text-base sm:text-lg text-gold-200 tracking-wider">
-                                012180004708651681
-                            </p>
-                        </div>
-                        <button onclick="copyDetail('previewAccountNum', 'Número de Cuenta/CLABE')" class="ml-2 bg-stone-800 hover:bg-gold-500 hover:text-black text-stone-300 p-2.5 rounded-lg transition active:scale-95 flex items-center justify-center shrink-0" title="Copiar Cuenta">
-                            <i class="fa-regular fa-copy text-sm"></i>
-                        </button>
-                    </div>
-
-                    <!-- Beneficiary Name -->
-                    <div class="bg-stone-900/60 border border-stone-800/80 p-3 rounded-xl flex items-center justify-between group hover:border-gold-500/40 transition">
-                        <div>
-                            <p class="text-[10px] font-semibold tracking-wider uppercase text-stone-400">Titular de la Cuenta</p>
-                            <p id="previewHolder" class="font-playfair italic font-bold text-lg text-white">
-                                Jonathan Zaldivar
-                            </p>
-                        </div>
-                        <div class="text-stone-500 text-sm">
-                            <i class="fa-solid fa-user-check text-gold-400/80"></i>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Footer note -->
-                <div class="relative z-10 pt-4 mt-2 text-center border-t border-stone-800/80">
-                    <p class="text-[11px] text-stone-400 flex items-center justify-center gap-1.5">
-                        <i class="fa-solid fa-lock text-gold-400 text-[10px]"></i>
-                        <span>Favor de enviar comprobante al realizar su pago</span>
-                    </p>
-                </div>
-
-            </div>
-
-            <!-- QUICK ACTION BUTTONS -->
-            <div class="w-full max-w-md grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <button onclick="copyAllFormattedText()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg transition active:scale-95">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span class="text-sm">Copiar p/ WhatsApp</span>
-                </button>
-                <button onclick="downloadCardImage()" class="w-full gold-btn text-stone-950 font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg transition active:scale-95">
-                    <i class="fa-solid fa-download text-base"></i>
-                    <span class="text-sm">Descargar Imagen HD</span>
+                <button onclick="copyToClipboard('012180004708651681', 'CLABE interbancaria')" class="flex items-center space-x-1.5 px-3 py-2 rounded-lg bg-gold-400/10 hover:bg-gold-400/20 text-gold-400 text-xs font-semibold active:scale-95 transition-all border border-gold-400/30">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Copiar</span>
                 </button>
             </div>
 
-        </section>
+            <!-- Número de Tarjeta -->
+            <div class="flex items-center justify-between p-3 rounded-xl bg-neutral-900/80 border border-neutral-800">
+                <div class="pr-2">
+                    <p class="text-[11px] text-neutral-400">Número de Tarjeta</p>
+                    <p class="text-sm font-mono font-bold text-white">4152 3146 5673 0028</p>
+                </div>
+                <button onclick="copyToClipboard('4152314656730028', 'Número de tarjeta')" class="flex items-center space-x-1.5 px-3 py-2 rounded-lg bg-gold-400/10 hover:bg-gold-400/20 text-gold-400 text-xs font-semibold active:scale-95 transition-all border border-gold-400/30">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Copiar</span>
+                </button>
+            </div>
 
+            <!-- Titular -->
+            <div class="flex items-center justify-between p-3 rounded-xl bg-neutral-900/80 border border-neutral-800">
+                <div>
+                    <p class="text-[11px] text-neutral-400">Titular</p>
+                    <p class="text-sm font-semibold text-white">Jonathan Zaldivar</p>
+                </div>
+                <button onclick="copyToClipboard('Jonathan Zaldivar', 'Nombre del titular')" class="flex items-center space-x-1.5 px-3 py-2 rounded-lg bg-gold-400/10 hover:bg-gold-400/20 text-gold-400 text-xs font-semibold active:scale-95 transition-all border border-gold-400/30">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Copiar</span>
+                </button>
+            </div>
 
-        <!-- RIGHT COLUMN: Customizer & Data Editor -->
-        <section class="lg:col-span-5 bg-stone-900 border border-stone-800 rounded-2xl p-6 shadow-xl space-y-6">
+            <!-- AVISO -->
+            <div class="flex items-start space-x-2.5 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-200/90 text-xs leading-relaxed">
+                <i class="fa-solid fa-circle-info text-gold-400 text-sm mt-0.5"></i>
+                <p>📌 Favor de enviar comprobante al realizar su pago. ¡Gracias por su compra!</p>
+            </div>
+        </div>
+
+        <!-- BOTONES DE ACCIÓN -->
+        <div class="space-y-3">
             
-            <div>
-                <h3 class="font-cinzel font-bold text-lg text-white flex items-center gap-2">
-                    <i class="fa-solid fa-sliders text-gold-400"></i> Personalizar Datos
-                </h3>
-                <p class="text-xs text-stone-400 mt-1">
-                    Modifica la información o estilo visual de tu tarjeta de pagos en tiempo real.
-                </p>
+            <!-- Botón WhatsApp -->
+            <a id="whatsapp-btn" href="https://wa.me/?text=Hola%20Sinclair%20Boutique,%20adjunto%20mi%20comprobante%20de%20pago." target="_blank" class="w-full flex items-center justify-center space-x-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg transition-all active:scale-[0.98]">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Enviar Comprobante por WhatsApp</span>
+            </a>
+
+            <!-- Copiar Todo y Compartir -->
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="copyAllData()" class="w-full flex items-center justify-center space-x-2 bg-neutral-800 hover:bg-neutral-700 text-gold-300 border border-gold-400/30 font-semibold py-3 px-3 rounded-xl transition-all text-xs active:scale-[0.98]">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Copiar Todo</span>
+                </button>
+
+                <button onclick="shareCard()" class="w-full flex items-center justify-center space-x-2 bg-neutral-800 hover:bg-neutral-700 text-white border border-neutral-700 font-semibold py-3 px-3 rounded-xl transition-all text-xs active:scale-[0.98]">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>Compartir Enlace</span>
+                </button>
             </div>
 
-            <!-- Theme Picker -->
-            <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-stone-300">Estilo Visual / Tema</label>
-                <div class="grid grid-cols-2 gap-2">
-                    <button onclick="setTheme('gold')" id="btnThemeGold" class="border-2 border-gold-400 bg-stone-800 text-gold-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition">
-                        <span class="w-3 h-3 rounded-full bg-gradient-to-r from-yellow-400 to-amber-600"></span>
-                        Oro Imperial
-                    </button>
-                    <button onclick="setTheme('rosegold')" id="btnThemeRose" class="border border-stone-700 bg-stone-800/60 text-stone-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition hover:border-pink-400/50">
-                        <span class="w-3 h-3 rounded-full bg-gradient-to-r from-pink-300 to-rose-500"></span>
-                        Oro Rosa
-                    </button>
-                    <button onclick="setTheme('marble')" id="btnThemeMarble" class="border border-stone-700 bg-stone-800/60 text-stone-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition hover:border-stone-300">
-                        <span class="w-3 h-3 rounded-full bg-gradient-to-r from-stone-100 to-stone-400"></span>
-                        Blanco Mármol
-                    </button>
-                    <button onclick="setTheme('midnight')" id="btnThemeMidnight" class="border border-stone-700 bg-stone-800/60 text-stone-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition hover:border-blue-400/50">
-                        <span class="w-3 h-3 rounded-full bg-gradient-to-r from-blue-900 to-indigo-600"></span>
-                        Azul Noche
-                    </button>
-                </div>
-            </div>
-
-            <hr class="border-stone-800">
-
-            <!-- Data Form -->
-            <div class="space-y-4">
-                
-                <!-- Boutique Name -->
-                <div>
-                    <label for="inputBoutique" class="block text-xs font-medium text-stone-300 mb-1">Nombre del Negocio</label>
-                    <input type="text" id="inputBoutique" value="SINCLAIR" oninput="updateCardData()" 
-                        class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-gold-400 transition">
-                </div>
-
-                <!-- Bank Name -->
-                <div>
-                    <label for="inputBank" class="block text-xs font-medium text-stone-300 mb-1">Banco Receptores</label>
-                    <input type="text" id="inputBank" value="BBVA" oninput="updateCardData()" 
-                        class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-gold-400 transition">
-                </div>
-
-                <!-- Card Number -->
-                <div>
-                    <label for="inputCardNum" class="block text-xs font-medium text-stone-300 mb-1">Número de Tarjeta (16 dígitos)</label>
-                    <input type="text" id="inputCardNum" value="4152 3146 4966 4979" oninput="formatAndUpdateCard(this)" maxlength="19"
-                        class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2 text-sm font-mono text-gold-300 focus:outline-none focus:border-gold-400 transition">
-                </div>
-
-                <!-- Account / CLABE -->
-                <div>
-                    <label for="inputAccountNum" class="block text-xs font-medium text-stone-300 mb-1">Número de Cuenta o CLABE</label>
-                    <input type="text" id="inputAccountNum" value="153 740 5135" oninput="updateCardData()" 
-                        class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2 text-sm font-mono text-gold-300 focus:outline-none focus:border-gold-400 transition">
-                </div>
-
-                <!-- Holder Name -->
-                <div>
-                    <label for="inputHolder" class="block text-xs font-medium text-stone-300 mb-1">A Nombre De (Titular)</label>
-                    <input type="text" id="inputHolder" value="Sergio Zaldivar" oninput="updateCardData()" 
-                        class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-gold-400 transition">
-                </div>
-
-            </div>
-
-            <!-- Features Info Box -->
-            <div class="bg-stone-950/60 rounded-xl p-4 border border-stone-800 text-xs text-stone-400 space-y-2">
-                <p class="font-semibold text-stone-300 flex items-center gap-1.5">
-                    <i class="fa-solid fa-circle-check text-emerald-400"></i> Optimizado para Transferencias
-                </p>
-                <p>
-                    Tus clientes podrán copiar de inmediato los números al tocar el botón correspondiente, evitando errores humanos de escritura.
-                </p>
-            </div>
-
-        </section>
+        </div>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-stone-900 bg-stone-950 py-4 text-center text-xs text-stone-600">
-        <p>© SINCLAIR BOUTIQUE - Tarjeta de Pago Digital</p>
+    <!-- Pie de página -->
+    <footer class="mt-8 text-center text-neutral-500 text-xs">
+        <p>© Sinclair Boutique. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 bg-gold-400 text-stone-950 px-4 py-3 rounded-xl shadow-2xl font-semibold text-sm flex items-center gap-2 opacity-0 pointer-events-none transform translate-y-3 z-50">
-        <i class="fa-solid fa-circle-check text-stone-950"></i>
-        <span id="toastMsg">Copiado al portapapeles</span>
-    </div>
-
-    <!-- Hidden Canvas for Image Generation -->
-    <canvas id="exportCanvas" class="hidden"></canvas>
-
+    <!-- Lógica de Copiado y Notificación -->
     <script>
-        // Copy to clipboard with iframe safety
-        function copyTextToClipboard(text, successMessage) {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast(successMessage);
-                }).catch(() => {
-                    fallbackCopyText(text, successMessage);
-                });
-            } else {
-                fallbackCopyText(text, successMessage);
-            }
-        }
-
-        function fallbackCopyText(text, successMessage) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-9999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    showToast(successMessage);
-                } else {
-                    showToast("No se pudo copiar automáticamente");
-                }
-            } catch (err) {
-                showToast("Error al copiar");
-            }
-            document.body.removeChild(textArea);
-        }
-
-        function copyDetail(elementId, label) {
-            const text = document.getElementById(elementId).innerText.trim();
-            copyTextToClipboard(text, `¡${label} copiado!`);
-        }
-
-        function copyAllFormattedText() {
-            const boutique = document.getElementById('inputBoutique').value;
-            const bank = document.getElementById('inputBank').value;
-            const card = document.getElementById('inputCardNum').value;
-            const account = document.getElementById('inputAccountNum').value;
-            const holder = document.getElementById('inputHolder').value;
-
-            const text = `✨ *${boutique.toUpperCase()} BOUTIQUE* ✨\n💳 *DATOS DE PAGO*\n\n🏛 *Banco:* ${bank}\n💳 *Tarjeta:* ${card}\n🔢 *Cuenta/CLABE:* ${account}\n👤 *Titular:* ${holder}\n\n📌 _Favor de enviar comprobante al realizar su pago. ¡Gracias por su compra!_`;
-
-            copyTextToClipboard(text, "¡Mensaje para WhatsApp copiado!");
-        }
-
-        function showToast(msg) {
+        function showToast(text) {
             const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMsg');
-            toastMsg.innerText = msg;
-            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
-            toast.classList.add('opacity-100', 'translate-y-0');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = text;
+            
+            toast.classList.remove('-translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
 
             setTimeout(() => {
-                toast.classList.remove('opacity-100', 'translate-y-0');
-                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
-            }, 3000);
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-20', 'opacity-0');
+            }, 2500);
         }
 
-        // Live input updates
-        function updateCardData() {
-            const boutiqueVal = document.getElementById('inputBoutique').value || 'SINCLAIR';
-            const bankVal = document.getElementById('inputBank').value || 'BBVA';
-            const cardVal = document.getElementById('inputCardNum').value || '4152 3146 4966 4979';
-            const accountVal = document.getElementById('inputAccountNum').value || '153 740 5135';
-            const holderVal = document.getElementById('inputHolder').value || 'Sergio Zaldivar';
+        function copyToClipboard(textToCopy, fieldName) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
 
-            document.getElementById('previewBoutique').innerText = boutiqueVal;
-            document.getElementById('previewBank').innerText = bankVal;
-            document.getElementById('previewCardNum').innerText = cardVal;
-            document.getElementById('previewAccountNum').innerText = accountVal;
-            document.getElementById('previewHolder').innerText = holderVal;
-        }
-
-        function formatAndUpdateCard(input) {
-            let value = input.value.replace(/\D/g, '');
-            let formatted = '';
-            for (let i = 0; i < value.length; i++) {
-                if (i > 0 && i % 4 === 0) formatted += ' ';
-                formatted += value[i];
-            }
-            input.value = formatted;
-            updateCardData();
-        }
-
-        // Theme switching logic
-        let currentTheme = 'gold';
-
-        function setTheme(theme) {
-            currentTheme = theme;
-            const card = document.getElementById('cardPreview');
-            const badge = document.getElementById('themeBadge');
-
-            // Reset borders/styles
-            card.className = "w-full max-w-md rounded-2xl p-6 sm:p-8 shadow-2xl relative shimmer transition-all duration-300 ";
-
-            // Reset buttons highlight
-            document.getElementById('btnThemeGold').className = "border border-stone-700 bg-stone-800/60 text-stone-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition";
-            document.getElementById('btnThemeRose').className = "border border-stone-700 bg-stone-800/60 text-stone-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition";
-            document.getElementById('btnThemeMarble').className = "border border-stone-700 bg-stone-800/60 text-stone-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition";
-            document.getElementById('btnThemeMidnight').className = "border border-stone-700 bg-stone-800/60 text-stone-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition";
-
-            if (theme === 'gold') {
-                card.classList.add('card-gold-frame');
-                badge.innerText = "Oro Imperial";
-                badge.className = "bg-gold-500/10 border border-gold-500/30 text-gold-300 px-2.5 py-0.5 rounded-full font-medium";
-                document.getElementById('btnThemeGold').className = "border-2 border-gold-400 bg-stone-800 text-gold-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition";
-            } else if (theme === 'rosegold') {
-                card.classList.add('card-rosegold-frame');
-                badge.innerText = "Oro Rosa";
-                badge.className = "bg-pink-500/10 border border-pink-500/30 text-pink-300 px-2.5 py-0.5 rounded-full font-medium";
-                document.getElementById('btnThemeRose').className = "border-2 border-pink-400 bg-stone-800 text-pink-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition";
-            } else if (theme === 'marble') {
-                card.classList.add('card-marble-frame');
-                badge.innerText = "Blanco Mármol";
-                badge.className = "bg-stone-200/10 border border-stone-300/30 text-stone-200 px-2.5 py-0.5 rounded-full font-medium";
-                document.getElementById('btnThemeMarble').className = "border-2 border-stone-300 bg-stone-800 text-stone-100 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition";
-            } else if (theme === 'midnight') {
-                card.classList.add('border-2', 'border-blue-500/60', 'bg-gradient-to-b', 'from-stone-900', 'to-slate-950');
-                badge.innerText = "Azul Noche";
-                badge.className = "bg-blue-500/10 border border-blue-500/30 text-blue-300 px-2.5 py-0.5 rounded-full font-medium";
-                document.getElementById('btnThemeMidnight').className = "border-2 border-blue-400 bg-stone-800 text-blue-300 p-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 justify-center transition";
+            try {
+                document.execCommand('copy');
+                showToast(`¡${fieldName} copiado!`);
+            } catch (err) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        showToast(`¡${fieldName} copiado!`);
+                    });
+                } else {
+                    showToast('Copiado');
+                }
+            } finally {
+                document.body.removeChild(tempInput);
             }
         }
 
-        // Draw HD Image to Canvas & Download
-        function downloadCardImage() {
-            const canvas = document.getElementById('exportCanvas');
-            const ctx = canvas.getContext('2d');
+        function copyAllData() {
+            const allText = `✨ *SINCLAIR BOUTIQUE* ✨\n💳 *DATOS DE PAGO*\n\n🏛 *Banco:* BBVA\n💳 *Tarjeta:* 4152 3146 5673 0028\n🔢 *Cuenta/CLABE:* 012180004708651681\n👤 *Titular:* Jonathan Zaldivar\n\n📌 Favor de enviar comprobante al realizar su pago. ¡Gracias por su compra!`;
             
-            // HD Dimensions (1200 x 1400)
-            canvas.width = 1000;
-            canvas.height = 1200;
-
-            // Background
-            if (currentTheme === 'marble') {
-                ctx.fillStyle = '#1c1b18';
-            } else if (currentTheme === 'midnight') {
-                ctx.fillStyle = '#0a0e1a';
-            } else {
-                ctx.fillStyle = '#121214';
-            }
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Card Frame / Background Box
-            const margin = 50;
-            const cardW = canvas.width - (margin * 2);
-            const cardH = canvas.height - (margin * 2);
-            const radius = 30;
-
-            // Rounded rectangle helper
-            ctx.save();
-            ctx.beginPath();
-            ctx.moveTo(margin + radius, margin);
-            ctx.lineTo(margin + cardW - radius, margin);
-            ctx.quadraticCurveTo(margin + cardW, margin, margin + cardW, margin + radius);
-            ctx.lineTo(margin + cardW, margin + cardH - radius);
-            ctx.quadraticCurveTo(margin + cardW, margin + cardH, margin + cardW - radius, margin + cardH);
-            ctx.lineTo(margin + radius, margin + cardH);
-            ctx.quadraticCurveTo(margin, margin + cardH, margin, margin + cardH - radius);
-            ctx.lineTo(margin, margin + radius);
-            ctx.quadraticCurveTo(margin, margin, margin + radius, margin);
-            ctx.closePath();
-
-            // Card Fill
-            ctx.fillStyle = '#18181c';
-            ctx.fill();
-
-            // Gold/Metallic Border
-            ctx.lineWidth = 6;
-            let grad = ctx.createLinearGradient(margin, margin, margin + cardW, margin + cardH);
-            if (currentTheme === 'rosegold') {
-                grad.addColorStop(0, '#FAD0C4');
-                grad.addColorStop(0.5, '#E1A2B8');
-                grad.addColorStop(1, '#9E5B72');
-            } else if (currentTheme === 'marble') {
-                grad.addColorStop(0, '#FFFFFF');
-                grad.addColorStop(0.5, '#D4AF37');
-                grad.addColorStop(1, '#AA820A');
-            } else if (currentTheme === 'midnight') {
-                grad.addColorStop(0, '#60A5FA');
-                grad.addColorStop(0.5, '#3B82F6');
-                grad.addColorStop(1, '#1D4ED8');
-            } else {
-                grad.addColorStop(0, '#FFE896');
-                grad.addColorStop(0.5, '#D4AF37');
-                grad.addColorStop(1, '#8A6818');
-            }
-            ctx.strokeStyle = grad;
-            ctx.stroke();
-            ctx.restore();
-
-            // Inner Gold Accent Line
-            ctx.save();
-            ctx.strokeStyle = 'rgba(212, 175, 55, 0.3)';
-            ctx.lineWidth = 1.5;
-            ctx.strokeRect(margin + 20, margin + 20, cardW - 40, cardH - 40);
-            ctx.restore();
-
-            // Draw Logo Purse Icon Circle
-            ctx.save();
-            ctx.beginPath();
-            ctx.arc(500, 190, 45, 0, Math.PI * 2);
-            ctx.fillStyle = '#222228';
-            ctx.fill();
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = grad;
-            ctx.stroke();
-
-            // Simple purse icon graphic
-            ctx.strokeStyle = '#D4AF37';
-            ctx.lineWidth = 4;
-            ctx.beginPath();
-            ctx.arc(500, 180, 14, Math.PI, 0); // Handle
-            ctx.stroke();
-            ctx.fillStyle = '#D4AF37';
-            ctx.fillRect(482, 182, 36, 22); // Bag
-            ctx.restore();
-
-            // Text Setup
-            const boutique = (document.getElementById('inputBoutique').value || 'SINCLAIR').toUpperCase();
-            const bank = document.getElementById('inputBank').value || 'BBVA';
-            const cardNum = document.getElementById('previewCardNum').innerText;
-            const accountNum = document.getElementById('previewAccountNum').innerText;
-            const holder = document.getElementById('inputHolder').value || 'Sergio Zaldivar';
-
-            // Boutique Name
-            ctx.textAlign = 'center';
-            ctx.font = '700 42px Cinzel, Georgia, serif';
-            ctx.fillStyle = '#FCE081';
-            ctx.fillText(boutique, 500, 280);
-
-            ctx.font = '500 18px Montserrat, sans-serif';
-            ctx.fillStyle = '#A8A8A8';
-            ctx.fillText('B O U T I Q U E', 500, 310);
-
-            // Title Box
-            ctx.fillStyle = 'rgba(212, 175, 55, 0.12)';
-            ctx.fillRect(330, 350, 340, 45);
-            ctx.strokeStyle = 'rgba(212, 175, 55, 0.4)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(330, 350, 340, 45);
-
-            ctx.font = '700 18px Cinzel, Georgia, serif';
-            ctx.fillStyle = '#FCE081';
-            ctx.fillText('DETALLES DE PAGO', 500, 379);
-
-            // Item Boxes helper
-            function drawDetailBox(y, label, value, isMono = false, isItalic = false) {
-                const boxX = 130;
-                const boxW = 740;
-                const boxH = 100;
-
-                ctx.fillStyle = '#222228';
-                ctx.fillRect(boxX, y, boxW, boxH);
-                ctx.strokeStyle = '#33333d';
-                ctx.lineWidth = 1;
-                ctx.strokeRect(boxX, y, boxW, boxH);
-
-                ctx.textAlign = 'left';
-                ctx.font = '600 14px Montserrat, sans-serif';
-                ctx.fillStyle = '#8E8E93';
-                ctx.fillText(label.toUpperCase(), boxX + 25, y + 35);
-
-                ctx.font = `${isItalic ? 'italic ' : ''}700 ${isMono ? '28px monospace' : '26px Montserrat, sans-serif'}`;
-                ctx.fillStyle = isMono ? '#FFF1B0' : '#FFFFFF';
-                ctx.fillText(value, boxX + 25, y + 75);
-            }
-
-            drawDetailBox(430, 'Banco', bank);
-            drawDetailBox(560, 'Número de Tarjeta', cardNum, true);
-            drawDetailBox(690, 'Cuenta / CLABE', accountNum, true);
-            drawDetailBox(820, 'Titular de la Cuenta', holder, false, true);
-
-            // Footer
-            ctx.textAlign = 'center';
-            ctx.font = '500 16px Montserrat, sans-serif';
-            ctx.fillStyle = '#999999';
-            ctx.fillText('🔒 Favor de enviar comprobante al realizar su pago', 500, 1030);
-
-            // Trigger Download
-            const link = document.createElement('a');
-            link.download = `Tarjeta_Pago_${boutique.replace(/\s+/g, '_')}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-
-            showToast("¡Imagen HD descargada!");
+            copyToClipboard(allText, "Todos los datos de pago fueron copiados");
         }
 
-        // Initialize view
-        updateCardData();
+        function shareCard() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Sinclair Boutique - Datos de Pago',
+                    text: 'Datos bancarios BBVA para realizar tu transferencia.',
+                    url: window.location.href
+                }).catch(() => {
+                    copyToClipboard(window.location.href, "Enlace de la tarjeta");
+                });
+            } else {
+                copyToClipboard(window.location.href, "Enlace de la tarjeta");
+            }
+        }
     </script>
 </body>
 </html>
